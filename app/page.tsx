@@ -1,9 +1,7 @@
-import Image from 'next/image'
+"use client;";
+
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <main>
-      main page
-    </main>
-  )
+  return <main>main page</main>;
 }
