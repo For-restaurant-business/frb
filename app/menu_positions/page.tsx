@@ -1,11 +1,16 @@
+"use client";
 import Image from "next/image";
-//@ts-ignore
-import("preline");
+import { useEffect } from "react";
 
 export const menu_positions = () => {
   const data: any = {
     name: "Салат с грейпфрутом",
   };
+
+  useEffect(() => {
+    //@ts-ignore
+    import("preline");
+  }, []);
   return (
     <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
       {/* <Image
