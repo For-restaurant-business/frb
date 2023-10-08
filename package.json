@@ -21,13 +21,13 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "autoprefixer": "latest",
+    "autoprefixer": "^10.4.16",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "eslint-config-prettier": "^9.0.0",
-    "postcss": "latest",
+    "postcss": "^8.4.31",
     "prettier": "^3.0.3",
-    "tailwindcss": "latest",
+    "tailwindcss": "^3.3.3",
     "typescript": "latest"
   }
 }
