@@ -14,7 +14,7 @@ const MenuPositions: FC<MenuPositionsProps> = ({
     (state) => state.getMenuPositions,
   );
 
-  const menuPositions = useMenuPositionsStore((state) => state.menuPositions);
+  // const menuPositions = useMenuPositionsStore((state) => state.menuPositions);
 
   useEffect(() => {
     getMenuPositions(params.id);

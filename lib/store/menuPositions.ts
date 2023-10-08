@@ -9,7 +9,7 @@ type MenuPositionsState = {
 
 export const useMenuPositionsStore = create<MenuPositionsState>((set) => ({
   menuPositions: [],
-  getMenuPositions: async (id) => {
+  getMenuPositions: async (id: string) => {
     const menuPositions = await getMenuPositions(id);
 
     set({ menuPositions });
