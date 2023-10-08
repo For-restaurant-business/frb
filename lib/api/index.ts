@@ -1,0 +1,1 @@
+export { getMenuPositions } from "./menuPositions";
