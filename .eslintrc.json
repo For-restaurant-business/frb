@@ -9,5 +9,9 @@
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
-  "rules": { "camelcase": "error", "react/react-in-jsx-scope": "off" }
+  "rules": {
+    "camelcase": "error",
+    "react/react-in-jsx-scope": "off",
+    "quotes": ["error", "double"]
+  }
 }
