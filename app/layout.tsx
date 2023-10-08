@@ -1,3 +1,4 @@
+import Header from "components/Header";
 import "./globals.css";
 
 import type { Metadata } from "next";
@@ -18,11 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={
-          inter.className +
-          " dark:bg-slate-900 bg-gray-100 flex h-full items-center py-16"
-        }
+        className={inter.className + " dark:bg-slate-900 bg-gray-100 h-full"}
       >
+        <Header />
         {children}
       </body>
     </html>
