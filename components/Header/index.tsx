@@ -13,7 +13,7 @@ const Header: FC = () => {
         aria-label="Global"
       >
         {/* TODO тоггл сайдбара */}
-        <div className="w-full flex items-center justify-end ml-auto sm:justify-between sm:gap-x-3 sm:order-3">
+        <div className="w-full flex items-center ml-auto justify-between sm:gap-x-3 sm:order-3">
           <Search />
           <div className="flex flex-row items-center justify-end gap-2">
             <ThemeToggle />
