@@ -7,5 +7,6 @@ const config: Config = {
     "node_modules/preline/dist/*.js",
   ],
   plugins: [require("preline/plugin")],
+  darkMode: "class",
 };
 export default config;

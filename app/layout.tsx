@@ -3,6 +3,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import ThemeProvider from "components/common/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body
-        className={inter.className + " dark:bg-slate-900 bg-gray-100 h-full"}
-      >
-        <Header />
-        {children}
+      <body className={inter.className + " h-full"}>
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
