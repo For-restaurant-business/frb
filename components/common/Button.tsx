@@ -8,12 +8,14 @@ export enum EButtonTheme {
 type ButtonProps = {
   theme?: EButtonTheme;
   className?: string;
+  onClick: () => void;
 } & PropsWithChildren;
 
 const Button: FC<ButtonProps> = ({
   theme,
   children,
   className = "",
+  onClick,
 }: ButtonProps) => {
   let themeClasses;
   switch (theme) {
@@ -26,7 +28,11 @@ const Button: FC<ButtonProps> = ({
       themeClasses = "";
       break;
   }
-  return <button className={`${themeClasses} ${className}`}>{children}</button>;
+  return (
+    <button onClick={onClick} className={`${themeClasses} ${className}`}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

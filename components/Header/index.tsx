@@ -1,24 +1,29 @@
 "use client";
-import { FC } from "react";
+import { FC, useState } from "react";
 import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
 import Dropdown from "./Dropdown";
 import Button, { EButtonTheme } from "components/common/Button";
 
 const Header: FC = () => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
   return (
     <header className="sticky top-0 inset-x-0 flex flex-wrap sm:flex-nowrap z-[48] w-full border-b text-sm py-2.5 dark:bg-gray-800 dark:border-gray-700">
       <nav
         className="flex basis-full items-center w-full mx-auto px-4 md:px-8"
         aria-label="Global"
       >
-        {/* TODO тоггл сайдбара */}
+        {/* TODO кнопка тоггла сайдбара */}
         <div className="w-full flex items-center ml-auto justify-between sm:gap-x-3 sm:order-3">
           <Search />
           <div className="flex flex-row items-center justify-end gap-2">
             <ThemeToggle />
             <div className="relative inline-flex [--placement:bottom-right]">
-              <Button theme={EButtonTheme.ROUNDED}>
+              <Button
+                onClick={() => setIsDropdownVisible(true)}
+                theme={EButtonTheme.ROUNDED}
+              >
                 {/* TODO вывести фото из профиля */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -27,7 +32,10 @@ const Header: FC = () => {
                   alt="Image Description"
                 />
               </Button>
-              <Dropdown isVisible={true} />
+              <Dropdown
+                isVisible={isDropdownVisible}
+                closeDropdown={() => setIsDropdownVisible(false)}
+              />
             </div>
           </div>
         </div>
