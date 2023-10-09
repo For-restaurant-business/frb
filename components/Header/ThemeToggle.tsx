@@ -4,9 +4,10 @@ import { FC } from "react";
 import ThemeLight from "assets/icons/ThemeLight.svg";
 import { EGlobalTheme, useUiSettingsStore } from "lib/store/uiSettings";
 import ThemeDark from "assets/icons/ThemeDark.svg";
+import useStore from "lib/hooks/useStore";
 
 const ThemeToggle: FC = () => {
-  const theme = useUiSettingsStore((state) => state.theme);
+  const theme = useStore(useUiSettingsStore, (state) => state.theme);
   const toggleTheme = useUiSettingsStore((state) => state.toggleTheme);
 
   return (

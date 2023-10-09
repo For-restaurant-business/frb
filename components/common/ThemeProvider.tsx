@@ -1,11 +1,12 @@
 "use client";
+import useStore from "lib/hooks/useStore";
 import { EGlobalTheme, useUiSettingsStore } from "lib/store/uiSettings";
 import { FC, PropsWithChildren } from "react";
 
 const ThemeProvider: FC<PropsWithChildren> = ({
   children,
 }: PropsWithChildren) => {
-  const theme = useUiSettingsStore((state) => state.theme);
+  const theme = useStore(useUiSettingsStore, (state) => state.theme);
 
   return (
     <div

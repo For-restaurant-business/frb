@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export enum EGlobalTheme {
   DARK = "dark",
@@ -9,26 +10,24 @@ type uiSettingsState = {
   theme: EGlobalTheme;
   toggleTheme: () => void;
 };
-const LOCAL_STORAGE_THEME_KEY = "theme";
 
-const defaultTheme =
-  (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as EGlobalTheme) ||
-  EGlobalTheme.LIGHT;
+export const useUiSettingsStore = create<uiSettingsState>()(
+  persist(
+    (set) => ({
+      theme: EGlobalTheme.LIGHT,
+      toggleTheme: () => {
+        set((state: uiSettingsState) => {
+          const newTheme =
+            state.theme === EGlobalTheme.LIGHT
+              ? EGlobalTheme.DARK
+              : EGlobalTheme.LIGHT;
 
-export const useUiSettingsStore = create<uiSettingsState>((set) => ({
-  theme: defaultTheme,
-  toggleTheme: () => {
-    set((state) => {
-      const newTheme =
-        state.theme === EGlobalTheme.LIGHT
-          ? EGlobalTheme.DARK
-          : EGlobalTheme.LIGHT;
-
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
-
-      return {
-        theme: newTheme,
-      };
-    });
-  },
-}));
+          return {
+            theme: newTheme,
+          };
+        });
+      },
+    }),
+    { name: "uiStore" },
+  ),
+);
