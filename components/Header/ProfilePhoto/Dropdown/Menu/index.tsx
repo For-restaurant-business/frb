@@ -1,4 +1,3 @@
-"use client";
 import { FC } from "react";
 import MenuItem from "./MenuItem";
 import Profile from "assets/icons/Profile.svg";

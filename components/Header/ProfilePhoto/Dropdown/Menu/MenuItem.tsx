@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { ElementType, FC, PropsWithChildren } from "react";
 

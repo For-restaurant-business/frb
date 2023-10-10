@@ -1,4 +1,3 @@
-"use client";
 import { FC, PropsWithChildren } from "react";
 
 export enum EButtonTheme {
