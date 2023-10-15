@@ -1,35 +1,46 @@
 "use client";
-import { FC, PropsWithChildren } from "react";
+import { FC, HTMLProps, PropsWithChildren } from "react";
 
 export enum EButtonTheme {
   ROUNDED = "rounded",
+  RECTANGULAR = "rectangular",
 }
 
 type ButtonProps = {
   theme?: EButtonTheme;
-  className?: string;
-  onClick: () => void;
-} & PropsWithChildren;
+  type?: "submit" | "reset" | "button";
+} & PropsWithChildren &
+  HTMLProps<HTMLButtonElement>;
 
 const Button: FC<ButtonProps> = ({
-  theme,
+  theme = EButtonTheme.RECTANGULAR,
   children,
+  type = "button",
   className = "",
-  onClick,
+  ...otherProps
 }: ButtonProps) => {
   let themeClasses;
   switch (theme) {
     case EButtonTheme.ROUNDED:
       themeClasses =
-        "inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800";
+        "flex-shrink-0 gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:ring-gray-400 focus:ring-offset-white text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700";
+      break;
+    case EButtonTheme.RECTANGULAR:
+      themeClasses =
+        "py-3 px-4 gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500 text-sm";
       break;
 
     default:
       themeClasses = "";
       break;
   }
+
   return (
-    <button onClick={onClick} className={`${themeClasses} ${className}`}>
+    <button
+      type={type}
+      className={`${themeClasses} ${className} inline-flex justify-center items-center focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800`}
+      {...otherProps}
+    >
       {children}
     </button>
   );
