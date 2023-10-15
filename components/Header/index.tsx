@@ -4,8 +4,13 @@ import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
 import Dropdown from "./Dropdown";
 import Button, { EButtonTheme } from "components/common/Button";
+import { User } from "lib/types";
 
-const Header: FC = () => {
+type HeaderProps = {
+  user: User | null;
+};
+
+const Header: FC<HeaderProps> = ({ user }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   return (
@@ -33,6 +38,7 @@ const Header: FC = () => {
                 />
               </Button>
               <Dropdown
+                email={user?.email || ""}
                 isVisible={isDropdownVisible}
                 closeDropdown={() => setIsDropdownVisible(false)}
               />
