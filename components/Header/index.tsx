@@ -1,9 +1,7 @@
-"use client";
-import { FC, useState } from "react";
+import { FC } from "react";
 import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
-import Dropdown from "./Dropdown";
-import Button, { EButtonTheme } from "components/common/Button";
+import ProfilePhoto from "./ProfilePhoto";
 import { User } from "lib/types";
 
 type HeaderProps = {
@@ -11,8 +9,6 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({ user }) => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
   return (
     <header className="sticky top-0 inset-x-0 flex flex-wrap sm:flex-nowrap z-[48] w-full border-b text-sm py-2.5 dark:bg-gray-800 dark:border-gray-700">
       <nav
@@ -24,25 +20,7 @@ const Header: FC<HeaderProps> = ({ user }) => {
           <Search />
           <div className="flex flex-row items-center justify-end gap-2">
             <ThemeToggle />
-            <div className="relative inline-flex [--placement:bottom-right]">
-              <Button
-                onClick={() => setIsDropdownVisible(true)}
-                theme={EButtonTheme.ROUNDED}
-              >
-                {/* TODO вывести фото из профиля */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800"
-                  src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-                  alt="Image Description"
-                />
-              </Button>
-              <Dropdown
-                email={user?.email || ""}
-                isVisible={isDropdownVisible}
-                closeDropdown={() => setIsDropdownVisible(false)}
-              />
-            </div>
+            <ProfilePhoto email={user?.email} />
           </div>
         </div>
       </nav>

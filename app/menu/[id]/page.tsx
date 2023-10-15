@@ -1,24 +1,16 @@
-"use client";
-
-import { FC, useEffect } from "react";
-import { useMenuPositionsStore } from "../../../lib/store/menuPositions";
+import { FC } from "react";
+import { getMenuPositions } from "lib/api";
 
 type MenuPositionsProps = {
   params: { id: string };
 };
 
-const MenuPositions: FC<MenuPositionsProps> = ({
+const MenuPositions: FC<MenuPositionsProps> = async ({
   params,
 }: MenuPositionsProps) => {
-  const getMenuPositions = useMenuPositionsStore(
-    (state) => state.getMenuPositions,
-  );
+  const menuPositions = await getMenuPositions(params.id);
+  console.log(menuPositions);
 
-  // const menuPositions = useMenuPositionsStore((state) => state.menuPositions);
-
-  useEffect(() => {
-    getMenuPositions(params.id);
-  }, [getMenuPositions, params.id]);
   return <div>123</div>;
 };
 

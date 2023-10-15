@@ -19,11 +19,11 @@ export async function POST(request: Request) {
     cookies().set("pb_auth", pb.authStore.exportToCookie());
 
     return NextResponse.json(record);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
+  } catch (err) {
+    const typedErr = err as Error;
     console.error(err);
     return new Response(
-      JSON.stringify({ error: err.message || err.toString() }),
+      JSON.stringify({ error: typedErr.message || typedErr.toString() }),
       {
         status: 500,
         headers: {

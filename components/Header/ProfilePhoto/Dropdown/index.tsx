@@ -1,9 +1,8 @@
-"use client";
 import { FC, useEffect, useRef } from "react";
 import Menu from "./Menu";
 
 type DropdownProps = {
-  email: string;
+  email?: string;
   isVisible: boolean;
   closeDropdown: () => void;
 };
