@@ -1,5 +1,5 @@
 "use client";
-import Button from "components/common/Button";
+import Button, { EButtonTheme } from "components/common/Button";
 import Input from "components/common/Input";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -74,7 +74,9 @@ const LoginPage: React.FC = () => {
                   Забыли пароль?
                 </a>
 
-                <Button type="submit">Войти</Button>
+                <Button type="submit" theme={EButtonTheme.RECTANGULAR}>
+                  Войти
+                </Button>
               </div>
             </form>
           </div>
