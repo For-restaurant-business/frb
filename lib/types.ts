@@ -9,3 +9,11 @@ export type MenuPosition = {
   menu_id: number;
   info_blocks?: InfoBlock[];
 };
+
+export type User = {
+  id: string;
+  name: string;
+  username: string;
+  email?: string;
+  avatar?: string;
+};
