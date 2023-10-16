@@ -18,8 +18,6 @@ const LoginPage: React.FC = () => {
   const route = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log("data: ", data);
-
     try {
       const response = await fetch("/api/login", {
         method: "POST",
@@ -33,6 +31,7 @@ const LoginPage: React.FC = () => {
       const result = await response.json();
       if (result?.token) {
         route.push("/");
+        route.refresh();
       } else {
         console.error("Failed to authenticate user no token");
       }

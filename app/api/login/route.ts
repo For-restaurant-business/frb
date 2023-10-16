@@ -6,13 +6,9 @@ import { authenticate } from "lib/api/auth";
 
 export async function POST(request: Request) {
   try {
-    const { login, password } = await request.json();
+    const { email, password } = await request.json();
 
-    console.log("login", login, "password", password);
-
-    const result = await authenticate(login, password);
-
-    console.log("result", result);
+    const result = await authenticate(email, password);
 
     const { record, token } = result;
     record.token = token;

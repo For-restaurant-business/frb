@@ -7,13 +7,10 @@ type ReadonlyRequestCookies = ReturnType<typeof cookies>;
 
 export async function authenticate(login: string, password: string) {
   try {
-    console.log("login", login, "password", password, "pb");
-
     const result = await pb
       .collection("users")
       .authWithPassword(login, password);
 
-    console.log("result", result);
     if (!result?.token) {
       throw new Error("Invalid email or password");
     }
