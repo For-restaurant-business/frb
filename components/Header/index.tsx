@@ -2,8 +2,13 @@ import { FC } from "react";
 import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
 import ProfilePhoto from "./ProfilePhoto";
+import { User } from "lib/types";
 
-const Header: FC = () => {
+type HeaderProps = {
+  user: User | null;
+};
+
+const Header: FC<HeaderProps> = ({ user }) => {
   return (
     <header className="sticky top-0 inset-x-0 flex flex-wrap sm:flex-nowrap z-[48] w-full border-b text-sm py-2.5 dark:bg-gray-800 dark:border-gray-700">
       <nav
@@ -15,7 +20,7 @@ const Header: FC = () => {
           <Search />
           <div className="flex flex-row items-center justify-end gap-2">
             <ThemeToggle />
-            <ProfilePhoto />
+            <ProfilePhoto email={user?.email} />
           </div>
         </div>
       </nav>

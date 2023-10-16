@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cookies-next": "^4.0.0",
     "next": "latest",
     "pocketbase": "^0.18.0",
     "preline": "^1.9.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-hook-form": "^7.47.0",
     "zustand": "^4.4.3"
   },
   "devDependencies": {

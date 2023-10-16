@@ -2,10 +2,12 @@ import { FC, useEffect, useRef } from "react";
 import Menu from "./Menu";
 
 type DropdownProps = {
+  email?: string;
   isVisible: boolean;
   closeDropdown: () => void;
 };
 const Dropdown: FC<DropdownProps> = ({
+  email,
   isVisible,
   closeDropdown,
 }: DropdownProps) => {
@@ -36,8 +38,7 @@ const Dropdown: FC<DropdownProps> = ({
           Вы авторизированны:
         </p>
         <p className="text-sm font-medium text-gray-800 dark:text-gray-300">
-          {/* TODO вывести почту с профиля */}
-          james@site.com
+          {email}
         </p>
       </div>
       <Menu />

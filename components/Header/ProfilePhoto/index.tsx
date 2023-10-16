@@ -3,7 +3,7 @@ import Button, { EButtonTheme } from "components/common/Button";
 import { useState } from "react";
 import Dropdown from "./Dropdown";
 
-const ProfilePhoto = () => {
+const ProfilePhoto = ({ email }: { email?: string }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   return (
@@ -21,6 +21,7 @@ const ProfilePhoto = () => {
         />
       </Button>
       <Dropdown
+        email={email}
         isVisible={isDropdownVisible}
         closeDropdown={() => setIsDropdownVisible(false)}
       />
