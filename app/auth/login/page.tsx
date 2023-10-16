@@ -24,19 +24,21 @@ const LoginPage: React.FC = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!response.ok) {
-        console.error("Failed to authenticate user");
-        return;
-      }
+
       const result = await response.json();
-      if (result?.token) {
-        route.push("/");
-        route.refresh();
-      } else {
-        console.error("Failed to authenticate user no token");
+
+      if (!response.ok) {
+        throw new Error(result.error);
       }
+
+      route.push("/");
+      route.refresh();
     } catch (err) {
-      console.error("Failed to authenticate user", err);
+      console.log(123123123);
+
+      console.log(err);
+
+      // HANDLE ERRORS
     }
   };
 
