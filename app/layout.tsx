@@ -1,5 +1,6 @@
+import "./globals.scss";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "components/Header";
-import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -8,6 +9,7 @@ import ThemeProvider from "components/common/ThemeProvider";
 import { User } from "lib/types";
 import { getUser as pbGetUser } from "lib/api/auth";
 import { cookies } from "next/headers";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +37,7 @@ export default async function RootLayout({
     <html lang="en" className="h-full">
       <body className={inter.className + " h-full"}>
         <ThemeProvider>
+          <ToastContainer position="bottom-left" />
           <Header user={user} />
           {children}
         </ThemeProvider>

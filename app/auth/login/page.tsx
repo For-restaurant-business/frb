@@ -1,7 +1,10 @@
 "use client";
 import Button, { EButtonTheme } from "components/common/Button";
 import Input from "components/common/Input";
+import { authenticate } from "lib/api/auth";
+import { authErrorHandler } from "lib/helpers/errorHandler";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
@@ -17,26 +20,25 @@ const LoginPage: React.FC = () => {
   } = useForm<Inputs>();
   const route = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) {
-        console.error("Failed to authenticate user");
-        return;
+      setIsLoading(true);
+      const res = await authenticate(email, password);
+
+      if (!res.ok) {
+        const errRes = await res.json();
+        throw new Error(errRes.error);
       }
-      const result = await response.json();
-      if (result?.token) {
-        route.push("/");
-        route.refresh();
-      } else {
-        console.error("Failed to authenticate user no token");
-      }
+
+      route.push("/");
+      route.refresh();
     } catch (err) {
-      console.error("Failed to authenticate user", err);
+      const typedError = err as Error;
+      authErrorHandler(typedError.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,7 +51,6 @@ const LoginPage: React.FC = () => {
               Авторизация
             </h1>
           </div>
-
           <div className="mt-5">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-y-4">
@@ -73,7 +74,11 @@ const LoginPage: React.FC = () => {
                   Забыли пароль?
                 </a>
 
-                <Button type="submit" theme={EButtonTheme.RECTANGULAR}>
+                <Button
+                  type="submit"
+                  theme={EButtonTheme.RECTANGULAR}
+                  isLoading={isLoading}
+                >
                   Войти
                 </Button>
               </div>
