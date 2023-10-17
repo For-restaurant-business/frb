@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark {
+  .Toastify__toast {
+    @apply border-gray-700 border bg-gray-800 text-white;
+  }
+
+  .Toastify__close-button > svg {
+    @apply text-white;
+  }
+}

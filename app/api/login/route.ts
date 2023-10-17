@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     const { record, token } = result;
 
     if (!token) {
-      throw new Error("Failed to authenticate user no token");
+      throw new Error("Failed to authenticate user no token.");
     }
 
     record.token = token;

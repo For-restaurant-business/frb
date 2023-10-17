@@ -5,6 +5,14 @@ import pb from "./config";
 
 type ReadonlyRequestCookies = ReturnType<typeof cookies>;
 
+export function authenticate(email: string, password: string) {
+  return fetch("/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+}
+
 export async function logout() {
   deleteCookie("pb_auth");
   localStorage.clear();

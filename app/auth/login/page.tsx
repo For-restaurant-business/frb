@@ -1,6 +1,8 @@
 "use client";
 import Button, { EButtonTheme } from "components/common/Button";
 import Input from "components/common/Input";
+import { authenticate } from "lib/api/auth";
+import { authErrorHandler } from "lib/helpers/errorHandler";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -17,28 +19,20 @@ const LoginPage: React.FC = () => {
   } = useForm<Inputs>();
   const route = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const res = await authenticate(email, password);
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error);
+      if (!res.ok) {
+        const errRes = await res.json();
+        throw new Error(errRes.error);
       }
 
       route.push("/");
       route.refresh();
     } catch (err) {
-      console.log(123123123);
-
-      console.log(err);
-
-      // HANDLE ERRORS
+      const typedError = err as Error;
+      authErrorHandler(typedError.message);
     }
   };
 
@@ -51,7 +45,6 @@ const LoginPage: React.FC = () => {
               Авторизация
             </h1>
           </div>
-
           <div className="mt-5">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-y-4">
