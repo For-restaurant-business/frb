@@ -8,7 +8,7 @@ export enum EButtonTheme {
 type ButtonProps = {
   theme?: EButtonTheme;
   type?: "submit" | "reset" | "button";
-  isLoading: boolean;
+  isLoading?: boolean;
 } & PropsWithChildren &
   HTMLProps<HTMLButtonElement>;
 
@@ -17,7 +17,7 @@ const Button: FC<ButtonProps> = ({
   children,
   type = "button",
   className = "",
-  isLoading,
+  isLoading = false,
   ...otherProps
 }: ButtonProps) => {
   const commonClasses = `inline-flex justify-center items-center focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800`;
