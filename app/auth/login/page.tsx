@@ -4,6 +4,7 @@ import Input from "components/common/Input";
 import { authenticate } from "lib/api/auth";
 import { authErrorHandler } from "lib/helpers/errorHandler";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
@@ -19,8 +20,11 @@ const LoginPage: React.FC = () => {
   } = useForm<Inputs>();
   const route = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     try {
+      setIsLoading(true);
       const res = await authenticate(email, password);
 
       if (!res.ok) {
@@ -33,6 +37,8 @@ const LoginPage: React.FC = () => {
     } catch (err) {
       const typedError = err as Error;
       authErrorHandler(typedError.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,7 +74,11 @@ const LoginPage: React.FC = () => {
                   Забыли пароль?
                 </a>
 
-                <Button type="submit" theme={EButtonTheme.RECTANGULAR}>
+                <Button
+                  type="submit"
+                  theme={EButtonTheme.RECTANGULAR}
+                  isLoading={isLoading}
+                >
                   Войти
                 </Button>
               </div>
