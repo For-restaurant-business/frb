@@ -15,7 +15,7 @@ const Header: FC<HeaderProps> = ({ user }) => {
     (cookies().get(THEME_COOKIE)?.value as EGlobalTheme) || EGlobalTheme.LIGHT;
 
   return (
-    <header className="sticky top-0 inset-x-0 flex flex-wrap sm:flex-nowrap z-[48] w-full border-b text-sm py-2.5 dark:bg-gray-800 dark:border-gray-700">
+    <header className="bg-white sticky top-0 inset-x-0 flex flex-wrap sm:flex-nowrap z-[48] w-full border-b text-sm py-2.5 dark:bg-gray-800 dark:border-gray-700">
       <nav
         className="flex basis-full items-center w-full mx-auto px-4 md:px-8"
         aria-label="Global"
