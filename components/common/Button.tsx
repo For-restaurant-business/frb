@@ -1,4 +1,5 @@
 import { FC, HTMLProps, PropsWithChildren } from "react";
+import Loader from "./Loader";
 
 export enum EButtonTheme {
   ROUNDED = "rounded",
@@ -43,13 +44,7 @@ const Button: FC<ButtonProps> = ({
       className={`${themeClasses} ${className}`}
       {...otherProps}
     >
-      {isLoading && (
-        <span
-          className="animate-spin inline-block w-4 h-4 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
-          role="status"
-          aria-label="loading"
-        />
-      )}
+      {isLoading && <Loader />}
       {!isLoading && children}
     </button>
   );
