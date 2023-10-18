@@ -26,7 +26,7 @@ const MenuPositions: FC<MenuPositionsProps> = ({
       toast.error("Что-то пошло не так, обновите страницу");
       setIsLoading(false);
     }
-  }, []);
+  }, [id]);
 
   return isLoading ? (
     <PageLoader />
