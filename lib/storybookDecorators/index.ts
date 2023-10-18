@@ -1,0 +1,1 @@
+export { DarkThemeDecorator } from "./DarkThemeDecorator";

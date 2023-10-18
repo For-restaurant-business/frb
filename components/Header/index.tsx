@@ -3,17 +3,14 @@ import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
 import ProfilePhoto from "./ProfilePhoto";
 import { User } from "lib/types";
-import { EGlobalTheme, THEME_COOKIE } from "lib/constants";
-import { cookies } from "next/headers";
+import { EGlobalTheme } from "lib/constants";
 
 type HeaderProps = {
+  theme: EGlobalTheme;
   user: User | null;
 };
 
-const Header: FC<HeaderProps> = ({ user }) => {
-  const theme =
-    (cookies().get(THEME_COOKIE)?.value as EGlobalTheme) || EGlobalTheme.LIGHT;
-
+const Header: FC<HeaderProps> = ({ user, theme }) => {
   return (
     <header className="bg-white sticky top-0 inset-x-0 flex flex-wrap sm:flex-nowrap z-[48] w-full border-b text-sm py-2.5 dark:bg-gray-800 dark:border-gray-700">
       <nav
