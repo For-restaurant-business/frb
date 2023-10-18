@@ -1,5 +1,5 @@
 import { FC, HTMLProps, PropsWithChildren } from "react";
-import Loader from "./Loader";
+import Loader from "components/common/Loader";
 
 export enum EButtonTheme {
   ROUNDED = "rounded",

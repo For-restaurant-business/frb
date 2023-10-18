@@ -32,7 +32,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const user = await getUser();
-  const theme = cookies().get(THEME_COOKIE)?.value || EGlobalTheme.LIGHT;
+  const theme =
+    (cookies().get(THEME_COOKIE)?.value as EGlobalTheme) || EGlobalTheme.LIGHT;
 
   return (
     <html lang="en" className={` ${theme === EGlobalTheme.DARK ? "dark" : ""}`}>
@@ -40,7 +41,7 @@ export default async function RootLayout({
         className={inter.className + " h-full bg-gray-100 dark:bg-slate-900"}
       >
         <ToastContainer position="bottom-left" />
-        <Header user={user} />
+        <Header user={user} theme={theme} />
         {children}
       </body>
     </html>
