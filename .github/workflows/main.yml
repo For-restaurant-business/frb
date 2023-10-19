@@ -32,6 +32,9 @@ jobs:
         run: pnpm lint
         if: always()
 
-      - name: Storybook visual tests
+      - name: Build storybook
         run: pnpm chromatic
         if: always()
+
+      - name: Storybook visual tests
+        run: pnpm chromatic
