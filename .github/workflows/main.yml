@@ -18,20 +18,20 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup
+
       - name: Install node_modules
-        run: npm install
+        run: pnpm install
 
       - name: Build production project
-        run: npm run build
+        run: pnpm build
         if: always()
 
       - name: Lint
-        run: npm run lint
+        run: pnpm lint
         if: always()
 
-      # - name: Install Playwright
-      #   run: npx playwright install --with-deps
-
       - name: Storybook visual tests
-        run: npm run chromatic
+        run: pnpm chromatic
         if: always()
