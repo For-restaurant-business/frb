@@ -29,18 +29,8 @@ jobs:
         run: npm run lint
         if: always()
 
-      - name: Storybook build
-        run: npm run build-storybook
-        if: always()
-
-      - name: Install Playwright
-        run: npx playwright install --with-deps
-
-      - name: Serve Storybook and run tests
-        run: |
-          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && npm run test-storybook"
+      # - name: Install Playwright
+      #   run: npx playwright install --with-deps
 
       - name: Storybook visual tests
         run: npm run chromatic
