@@ -34,7 +34,7 @@ jobs:
         if: always()
 
       - name: Build storybook
-        run: pnpm chromatic
+        run: pnpm build-storybook
         if: always()
 
       - name: Storybook visual tests
