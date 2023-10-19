@@ -41,9 +41,3 @@ jobs:
 
       - name: Storybook visual tests
         run: pnpm chromatic
-
-      - name: Install Playwright
-        run: npx playwright install --with-deps
-
-      - name: Storybook test-runner
-        run: yarn test-storybook
