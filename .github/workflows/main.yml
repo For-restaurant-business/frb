@@ -1,0 +1,43 @@
+name: Linting, testing, building
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+jobs:
+  pipline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+        pnpm-version: [8.x]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ matrix.pnpm-version }}
+          run_install: true
+
+      - name: Build production project
+        run: pnpm build
+        if: always()
+
+      - name: Lint
+        run: pnpm lint
+        if: always()
+
+      - name: Build storybook
+        run: pnpm build-storybook
+        if: always()
+
+      - name: Storybook visual tests
+        run: pnpm chromatic
