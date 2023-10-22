@@ -6,12 +6,15 @@ import SignOut from "assets/icons/SignOut.svg";
 import Button from "components/common/Button";
 import { logout } from "lib/api/auth";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "lib/store/useUserStore";
 
 const Menu: FC = () => {
   const route = useRouter();
+  const deleteUser = useUserStore((store) => store.deleteUser);
 
   function handleLogout() {
     logout();
+    deleteUser();
     route.push("/auth/login");
     route.refresh();
   }

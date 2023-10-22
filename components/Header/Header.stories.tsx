@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import HeaderComponent from "./";
+import { Header as HeaderComponent } from "./";
 import { EGlobalTheme } from "lib/constants";
 import { DarkThemeDecorator } from "lib/storybookDecorators";
+import { User } from "lib/types";
 
 const meta = {
   title: "Header",
@@ -12,11 +13,16 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const user: User = {
+  id: "test",
+  name: "Name",
+  email: "example@gmeil.com",
+};
 export const Header: Story = {
-  args: { user: null, theme: EGlobalTheme.LIGHT },
+  args: { user, theme: EGlobalTheme.LIGHT },
 };
 
 export const Header_Dark: Story = {
-  args: { user: null, theme: EGlobalTheme.DARK },
+  args: { user, theme: EGlobalTheme.DARK },
 };
 Header_Dark.decorators = [DarkThemeDecorator];

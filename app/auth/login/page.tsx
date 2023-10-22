@@ -31,11 +31,6 @@ const LoginPage: React.FC = () => {
       setIsLoading(true);
       const res = await authenticate(email, password);
 
-      if (!res.ok) {
-        const errRes = await res.json();
-        throw new Error(errRes.error);
-      }
-
       const userRes = await res.json();
       setUser(userRes);
 

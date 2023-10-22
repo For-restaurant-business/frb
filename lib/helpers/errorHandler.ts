@@ -6,6 +6,13 @@ export function authErrorHandler(err: Error) {
     case "Failed to authenticate.":
       toast.error("Неверный логин или пароль");
       break;
+
+    case "Cookies have not been created.":
+      toast.error(
+        "Проблема с выдачей кук, обратитесь в поддержку: example@gmail.com",
+      );
+      break;
+
     case "Failed to authenticate user no token.":
       // TODO create support email
       toast.error(
