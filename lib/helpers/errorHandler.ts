@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
 
-export function authErrorHandler(message: string) {
-  switch (message) {
+export function authErrorHandler(err: Error) {
+  console.log(err);
+  switch (err.message) {
     case "Failed to authenticate.":
       toast.error("Неверный логин или пароль");
       break;

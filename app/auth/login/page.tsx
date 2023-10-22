@@ -3,7 +3,7 @@ import Button, { EButtonTheme } from "components/common/Button";
 import Input from "components/common/Input";
 import { authenticate } from "lib/api/auth";
 import { authErrorHandler } from "lib/helpers/errorHandler";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -18,7 +18,8 @@ const LoginPage: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const route = useRouter();
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,11 +33,11 @@ const LoginPage: React.FC = () => {
         throw new Error(errRes.error);
       }
 
-      route.push("/");
-      route.refresh();
+      const redirectUrl = (searchParams.get("redirect") as string) || "/";
+      push(redirectUrl);
     } catch (err) {
       const typedError = err as Error;
-      authErrorHandler(typedError.message);
+      authErrorHandler(typedError);
     } finally {
       setIsLoading(false);
     }
