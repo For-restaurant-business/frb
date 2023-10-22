@@ -3,6 +3,7 @@ import Button, { EButtonTheme } from "components/common/Button";
 import Input from "components/common/Input";
 import { authenticate } from "lib/api/auth";
 import { authErrorHandler } from "lib/helpers/errorHandler";
+import { useUserStore } from "lib/store/useUserStore";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -21,6 +22,8 @@ const LoginPage: React.FC = () => {
   const { push } = useRouter();
   const searchParams = useSearchParams();
 
+  const setUser = useUserStore((store) => store.setUser);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
@@ -32,6 +35,9 @@ const LoginPage: React.FC = () => {
         const errRes = await res.json();
         throw new Error(errRes.error);
       }
+
+      const userRes = await res.json();
+      setUser(userRes);
 
       const redirectUrl = (searchParams.get("redirect") as string) || "/";
       push(redirectUrl);
