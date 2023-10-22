@@ -1,9 +1,9 @@
 import PocketBase from "pocketbase";
-import { getCookie, deleteCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 
 export const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_HOST);
 
-if (typeof window !== undefined) {
+if (typeof window !== "undefined") {
   const authCookie = getCookie("pb_auth") as string;
   pb.authStore.loadFromCookie(authCookie);
 }
