@@ -1,1 +1,1 @@
-export { getMenuPositions } from "./menuPositions";
+export { getMenuPositions, getMenus } from "./menu";
