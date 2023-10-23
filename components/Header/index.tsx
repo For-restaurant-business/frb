@@ -26,6 +26,7 @@ export const Header: FC<HeaderProps> = ({ theme, user }) => {
 
   useEffect(() => {
     import(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       "../../node_modules/preline/dist/components/hs-overlay/hs-overlay.js"
     );

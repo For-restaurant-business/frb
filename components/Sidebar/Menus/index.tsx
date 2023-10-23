@@ -3,7 +3,7 @@
 import { getMenus } from "lib/api";
 import { Menu } from "lib/types";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MenusSkeleton from "./MenusSkeleton";
 import { useUrlHelper } from "lib/helpers/useUrlHelper";
 
