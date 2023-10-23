@@ -5,7 +5,7 @@ const Loader = () => {
       role="status"
       aria-label="loading"
     >
-      <span className="sr-only">Loading...</span>
+      <span className="sr-only">Загрузка...</span>
     </div>
   );
 };
