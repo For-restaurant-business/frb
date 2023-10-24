@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import pb from "lib/api/config";
 
 export async function middleware(request: NextRequest) {
+  console.log("testtesttest");
   const response = NextResponse.next();
   const authCookie = request.cookies.get("pb_auth");
 
