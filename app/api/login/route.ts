@@ -19,6 +19,7 @@ export async function POST(request: Request) {
     record.token = token;
     cookies().set("pb_auth", pb.authStore.exportToCookie(), {
       sameSite: "lax",
+      expires: Date.now() + 30,
     });
 
     return NextResponse.json(record);
