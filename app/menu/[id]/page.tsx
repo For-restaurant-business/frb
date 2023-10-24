@@ -31,7 +31,7 @@ const MenuPositions: FC<MenuPositionsProps> = ({
   return isLoading ? (
     <PageLoader />
   ) : (
-    <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto grid lg:auto-rows-fr 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6 mb-10 lg:mb-14">
+    <div className="grid lg:auto-rows-fr 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6 mb-10 lg:mb-14">
       {menuPositions.map((e: MenuPosition) => (
         <MenuPositionCard
           key={e.id}
