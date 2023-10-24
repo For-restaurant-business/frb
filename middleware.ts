@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 import pb from "lib/api/config";
 
 export async function middleware(request: NextRequest) {
-  console.log("testtesttest");
   const response = NextResponse.next();
   const authCookie = request.cookies.get("pb_auth");
 
@@ -11,25 +10,24 @@ export async function middleware(request: NextRequest) {
     try {
       pb.authStore.loadFromCookie(authCookie.value);
     } catch (error) {
-      // pb.authStore.clear();
-      // response.headers.set(
-      //   "set-cookie",
-      //   pb.authStore.exportToCookie({ httpOnly: false }),
-      // );
+      pb.authStore.clear();
+      response.headers.set(
+        "set-cookie",
+        pb.authStore.exportToCookie({ httpOnly: false }),
+      );
     }
+  } else {
+    pb.authStore.clear();
   }
-  //  else {
-  //   pb.authStore.clear();
-  // }
 
   try {
     pb.authStore.isValid && (await pb.collection("users").authRefresh());
   } catch (err) {
-    // pb.authStore.clear();
-    // response.headers.set(
-    //   "set-cookie",
-    //   pb.authStore.exportToCookie({ httpOnly: false }),
-    // );
+    pb.authStore.clear();
+    response.headers.set(
+      "set-cookie",
+      pb.authStore.exportToCookie({ httpOnly: false }),
+    );
   }
 
   if (!authCookie && !request.nextUrl.pathname.startsWith("/auth")) {
