@@ -17,18 +17,15 @@ export async function middleware(request: NextRequest) {
       );
     }
   }
-  // else {
-  //   pb.authStore.clear();
-  // }
 
   try {
     pb.authStore.isValid && (await pb.collection("users").authRefresh());
   } catch (err) {
-    // pb.authStore.clear();
-    // response.headers.set(
-    //   "set-cookie",
-    //   pb.authStore.exportToCookie({ httpOnly: false }),
-    // );
+    pb.authStore.clear();
+    response.headers.set(
+      "set-cookie",
+      pb.authStore.exportToCookie({ httpOnly: false }),
+    );
   }
 
   if (!authCookie && !request.nextUrl.pathname.startsWith("/auth")) {
