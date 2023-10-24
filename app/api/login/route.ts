@@ -17,7 +17,9 @@ export async function POST(request: Request) {
     }
 
     record.token = token;
-    cookies().set("pb_auth", pb.authStore.exportToCookie());
+    cookies().set("pb_auth", pb.authStore.exportToCookie(), {
+      sameSite: "lax",
+    });
 
     return NextResponse.json(record);
   } catch (err) {
