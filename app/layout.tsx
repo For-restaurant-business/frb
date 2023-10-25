@@ -35,7 +35,7 @@ export default async function RootLayout({
           <div className="w-full">
             <HeaderContainer theme={theme} />
 
-            <div id="contentWidth" className={`ml-auto`}>
+            <div className="ml-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
               {children}
             </div>
           </div>

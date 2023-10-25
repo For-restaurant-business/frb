@@ -1,5 +1,7 @@
 export type InfoBlock = {
+  title: string;
   text: string;
+  images?: string[];
 };
 
 export type MenuPosition = {
