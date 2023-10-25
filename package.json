@@ -11,7 +11,7 @@
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "chromatic:dev": "npx chromatic --project-token=chpt_282479192195595",
-    "chromatic": "npx chromatic --project-token=chpt_282479192195595 --exit-zero-on-changes -d storybook-static/"
+    "chromatic": "npx chromatic --project-token=chpt_282479192195595 -d storybook-static/"
   },
   "dependencies": {
     "cookies-next": "^4.0.0",
