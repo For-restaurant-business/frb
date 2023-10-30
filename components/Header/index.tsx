@@ -56,7 +56,7 @@ export const Header: FC<HeaderProps> = ({ theme, user }) => {
             </div>
             <div className="flex flex-row items-center justify-end gap-2">
               <ThemeToggle themeCookie={theme} />
-              <ProfilePhoto email={user.email} />
+              <ProfilePhoto user={user} />
             </div>
           </div>
         </nav>

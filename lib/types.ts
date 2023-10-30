@@ -15,7 +15,7 @@ export type MenuPosition = {
 export type User = {
   id: string;
   name: string;
-  email?: string;
+  email: string;
   avatar?: string;
 };
 

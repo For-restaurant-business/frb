@@ -2,8 +2,12 @@
 import Button, { EButtonTheme } from "components/common/Button";
 import { useState } from "react";
 import Dropdown from "./Dropdown";
+import { User } from "lib/types";
+import Image from "next/image";
+import { API_FILES } from "lib/constants";
+import UserIcon from "assets/icons/UserIcon.svg";
 
-const ProfilePhoto = ({ email }: { email?: string }) => {
+const ProfilePhoto = ({ user }: { user: User }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   return (
@@ -12,16 +16,21 @@ const ProfilePhoto = ({ email }: { email?: string }) => {
         onClick={() => setIsDropdownVisible(true)}
         theme={EButtonTheme.ROUNDED}
       >
-        {/* TODO вывести фото из профиля */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800"
-          src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-          alt="Image Description"
-        />
+        {user.avatar ? (
+          <Image
+            className="inline-block h-[2.375rem] w-[2.375rem] rounded-full ring-2 ring-white dark:ring-gray-800"
+            src={`${API_FILES}/users/${user.id}/${user.avatar}`}
+            width={38}
+            height={38}
+            priority={true}
+            alt={`Фото пункта меню: ${name}`}
+          />
+        ) : (
+          <UserIcon className="h-5 w-5" />
+        )}
       </Button>
       <Dropdown
-        email={email}
+        email={user.email}
         isVisible={isDropdownVisible}
         closeDropdown={() => setIsDropdownVisible(false)}
       />
