@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import pb from "lib/api/config";
+import { USER_COOKIE } from "lib/constants";
 
 export async function POST(request: Request) {
   try {
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
 
     record.token = token;
 
-    cookies().set("pb_auth", pb.authStore.exportToCookie(), {
+    cookies().set(USER_COOKIE, pb.authStore.exportToCookie(), {
       sameSite: "lax",
       expires: Date.now() + 24 * 60 * 60 * 1000 * 30,
     });

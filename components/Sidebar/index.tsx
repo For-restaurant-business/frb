@@ -65,6 +65,7 @@ export const Sidebar = ({ isAuth }: { isAuth: boolean }) => {
   );
 };
 
+// To render component in Storybook
 export const SidebarContainer = () => {
   const userId = useUserStore((store) => store.user.id);
 

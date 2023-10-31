@@ -3,7 +3,7 @@ import { FC, useEffect } from "react";
 import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
 import ProfilePhoto from "./ProfilePhoto";
-import { EGlobalTheme } from "lib/constants";
+import { EGlobalTheme, USER_COOKIE } from "lib/constants";
 import { useUserStore } from "lib/store/useUserStore";
 import { User } from "lib/types";
 import { getCookie } from "cookies-next";
@@ -65,12 +65,14 @@ export const Header: FC<HeaderProps> = ({ theme, user }) => {
   );
 };
 
+// To render component in Storybook
 export const HeaderContainer: FC<HeaderContainerProps> = ({ theme }) => {
   const user = useUserStore((store) => store.user);
   const setUser = useUserStore((store) => store.setUser);
 
   useEffect(() => {
-    getUser(getCookie("pb_auth")).then((res) => res && setUser(res));
+    const userFromCookie = getCookie(USER_COOKIE);
+    getUser(userFromCookie).then((res) => res && setUser(res));
   }, [setUser]);
 
   return <Header theme={theme} user={user} />;

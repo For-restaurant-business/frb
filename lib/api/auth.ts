@@ -3,6 +3,7 @@ import { deleteCookie, getCookie } from "cookies-next";
 
 import pb from "./config";
 import { User } from "lib/types";
+import { USER_COOKIE } from "lib/constants";
 
 type ReadonlyRequestCookies = ReturnType<typeof cookies>;
 
@@ -18,7 +19,7 @@ export async function authenticate(email: string, password: string) {
     throw new Error(errRes.error);
   }
 
-  const authCookie = getCookie("pb_auth");
+  const authCookie = getCookie(USER_COOKIE);
   if (!authCookie) {
     throw new Error("Cookies have not been created.");
   }
@@ -28,12 +29,12 @@ export async function authenticate(email: string, password: string) {
 }
 
 export async function logout() {
-  deleteCookie("pb_auth");
+  deleteCookie(USER_COOKIE);
   localStorage.clear();
 }
 
 export async function isAuthenticated(cookieStore: ReadonlyRequestCookies) {
-  const cookie = cookieStore.get("pb_auth");
+  const cookie = cookieStore.get(USER_COOKIE);
   if (!cookie) {
     return false;
   }

@@ -14,6 +14,7 @@
     "chromatic": "npx chromatic --project-token=chpt_282479192195595 -d storybook-static/"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.4.3",
     "cookies-next": "^4.0.0",
     "next": "latest",
     "pocketbase": "^0.18.0",
