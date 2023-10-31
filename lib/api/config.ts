@@ -1,10 +1,11 @@
 import PocketBase from "pocketbase";
 import { getCookie } from "cookies-next";
+import { USER_COOKIE } from "lib/constants";
 
-export const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_HOST);
+const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_HOST);
 
 if (typeof window !== "undefined") {
-  const authCookie = getCookie("pb_auth") as string;
+  const authCookie = getCookie(USER_COOKIE) as string;
   pb.authStore.loadFromCookie(authCookie);
 }
 

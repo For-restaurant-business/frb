@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import MenuPositionCardComponent from "./";
+import MenuPositionCardComponent from ".";
 import { DarkThemeDecorator } from "lib/storybookDecorators";
 
 const meta = {

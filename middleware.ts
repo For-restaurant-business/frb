@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import pb from "lib/api/config";
+import { USER_COOKIE } from "lib/constants";
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
-  const authCookie = request.cookies.get("pb_auth");
+  const authCookie = request.cookies.get(USER_COOKIE);
 
   if (authCookie) {
     try {
@@ -29,8 +30,6 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!authCookie && !request.nextUrl.pathname.startsWith("/auth")) {
-    console.log("не залогинены");
-
     const redirect = new URL("/auth/login", request.url);
     if (request.nextUrl.pathname) {
       redirect.search = new URLSearchParams({

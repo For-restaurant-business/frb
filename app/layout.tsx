@@ -8,6 +8,7 @@ import { HeaderContainer } from "components/Header";
 import { ToastContainer } from "react-toastify";
 import { EGlobalTheme, THEME_COOKIE } from "lib/constants";
 import { SidebarContainer } from "components/Sidebar";
+import QueryProvider from "components/providers/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,17 +30,19 @@ export default async function RootLayout({
       <body
         className={inter.className + " h-full bg-gray-100 dark:bg-slate-900"}
       >
-        <ToastContainer position="bottom-left" />
-        <div className="flex">
-          <SidebarContainer />
-          <div className="w-full">
-            <HeaderContainer theme={theme} />
+        <QueryProvider>
+          <ToastContainer position="bottom-left" />
+          <div className="flex">
+            <SidebarContainer />
+            <div className="w-full">
+              <HeaderContainer theme={theme} />
 
-            <div className="ml-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-              {children}
+              <div className="ml-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                {children}
+              </div>
             </div>
           </div>
-        </div>
+        </QueryProvider>
       </body>
     </html>
   );

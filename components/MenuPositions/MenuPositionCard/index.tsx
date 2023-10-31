@@ -28,7 +28,6 @@ const MenuPositionCard: FC<MenuPositionCardProps> = ({
           src={imageSrc}
           fill={true}
           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
-          priority={true}
           alt={`Фото пункта меню: ${name}`}
           placeholder="blur"
           blurDataURL={`${API_FILES}/menu_positions/${id}/${image}?thumb=100x100`}
