@@ -7,9 +7,10 @@ import Restaurant from "assets/icons/Restaraunt.svg";
 import Calendar from "assets/icons/Calendar.svg";
 import { useUrlHelper } from "lib/helpers/useUrlHelper";
 
-export const Sidebar = ({ isAuth }: { isAuth: boolean }) => {
+const Sidebar = () => {
   const { isActivePage } = useUrlHelper();
   const activeStyles = "bg-gray-100 dark:bg-gray-900 dark:text-slate-300";
+  const isAuth = !!useUserStore((store) => store.user.id);
 
   return (
     isAuth && (
@@ -65,8 +66,4 @@ export const Sidebar = ({ isAuth }: { isAuth: boolean }) => {
   );
 };
 
-export const SidebarContainer = () => {
-  const userId = useUserStore((store) => store.user.id);
-
-  return <Sidebar isAuth={!!userId} />;
-};
+export default Sidebar;

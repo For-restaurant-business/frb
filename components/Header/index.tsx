@@ -3,26 +3,29 @@ import { FC, useEffect } from "react";
 import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
 import ProfilePhoto from "./ProfilePhoto";
-import { EGlobalTheme } from "lib/constants";
+import { EGlobalTheme, USER_COOKIE } from "lib/constants";
 import { useUserStore } from "lib/store/useUserStore";
-import { User } from "lib/types";
 import { getCookie } from "cookies-next";
 import { getUser } from "lib/api/auth";
 import Menu from "assets/icons/Menu.svg";
 import { useUrlHelper } from "lib/helpers/useUrlHelper";
 
-type HeaderContainerProps = {
+type HeaderProps = {
   theme: EGlobalTheme;
 };
 
-type HeaderProps = {
-  user: User;
-} & HeaderContainerProps;
+export const Header: FC<HeaderProps> = ({ theme }) => {
+  const user = useUserStore((store) => store.user);
+  const setUser = useUserStore((store) => store.setUser);
 
-export const Header: FC<HeaderProps> = ({ theme, user }) => {
   const { getPageChain } = useUrlHelper();
 
   const isMenuPage = getPageChain(1) === "menu";
+
+  useEffect(() => {
+    const userToken = getCookie(USER_COOKIE);
+    getUser(userToken).then((res) => res && setUser(res));
+  }, [setUser]);
 
   useEffect(() => {
     import(
@@ -65,13 +68,4 @@ export const Header: FC<HeaderProps> = ({ theme, user }) => {
   );
 };
 
-export const HeaderContainer: FC<HeaderContainerProps> = ({ theme }) => {
-  const user = useUserStore((store) => store.user);
-  const setUser = useUserStore((store) => store.setUser);
-
-  useEffect(() => {
-    getUser(getCookie("pb_auth")).then((res) => res && setUser(res));
-  }, [setUser]);
-
-  return <Header theme={theme} user={user} />;
-};
+export default Header;

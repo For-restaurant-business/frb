@@ -25,24 +25,20 @@ const Menus = () => {
       {isLoading ? (
         <MenusSkeleton />
       ) : (
-        menus.map((menu) => {
-          console.log(isMenuActive(menu.id));
-
-          return (
-            <li
-              key={menu.id}
-              className={`flex items-center gap-x-3.5 text-sm rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:hover:text-slate-300 ${
-                isMenuActive(menu.id)
-                  ? "text-gray-400 bg-gray-100 dark:text-slate-300 dark:bg-gray-900"
-                  : "text-slate-700 dark:text-slate-400"
-              }`}
-            >
-              <Link className="w-full py-2 px-2.5" href={`/menu/${menu.id}`}>
-                {menu.name}
-              </Link>
-            </li>
-          );
-        })
+        menus.map((menu) => (
+          <li
+            key={menu.id}
+            className={`flex items-center gap-x-3.5 text-sm rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:hover:text-slate-300 ${
+              isMenuActive(menu.id)
+                ? "text-gray-400 bg-gray-100 dark:text-slate-300 dark:bg-gray-900"
+                : "text-slate-700 dark:text-slate-400"
+            }`}
+          >
+            <Link className="w-full py-2 px-2.5" href={`/menu/${menu.id}`}>
+              {menu.name}
+            </Link>
+          </li>
+        ))
       )}
     </ul>
   );
