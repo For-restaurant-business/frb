@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
       const userRes = await res.json();
       setUser(userRes);
 
-      const redirectUrl = (searchParams.get("redirect") as string) || "/";
+      const redirectUrl = (searchParams?.get("redirect") as string) || "/";
       push(redirectUrl);
     } catch (err) {
       const typedError = err as Error;
